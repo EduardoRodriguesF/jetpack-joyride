@@ -1,13 +1,7 @@
-#include "constants.h"
-#include "clock/clock.h"
+#include "game.h"
 
 int main() {
-    Clock clock(FPS);
-
-    while (true) {
-
-
-        clock.tick();
-        clock.lock_remaining();
-    }
+    Game game;
+    
+    game.run();
 }

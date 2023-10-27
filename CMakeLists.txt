@@ -8,7 +8,7 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 
-add_executable(${PROJECT_NAME} "src/main.cpp")
+add_executable(${PROJECT_NAME} "src/main.cpp" "src/game.cpp" "src/game_objects/player.cpp")
 
 include_directories(modules)
 add_subdirectory(modules/clock)
