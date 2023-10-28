@@ -12,6 +12,11 @@ void Player::update(const float delta_time) {
     }
 
     transform.y += y_speed * delta_time;
+
+    if (transform.y >= FLOOR_Y) {
+        transform.y = FLOOR_Y;
+        y_speed = 0;
+    }
 }
 
 void Player::draw(SDL_Renderer *renderer) const {
