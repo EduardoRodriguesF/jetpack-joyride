@@ -4,14 +4,14 @@
 
 Player::Player() : transform({0.0f, 0.0f, 32.0f, 32.0f}) {};
 
-void Player::update(float delta_time) {
+void Player::update(const float delta_time) {
     if (flying) {
-        y_speed = std::max(y_speed - FLY_ACCELERATION, -MAX_FLY_SPEED);
+        y_speed = std::max(y_speed - FLY_ACCELERATION * delta_time, -MAX_FLY_SPEED);
     } else {
-        y_speed = std::min(y_speed + GRAVITY_FORCE, MAX_FALL_SPEED);
+        y_speed = std::min(y_speed + GRAVITY_FORCE * delta_time, MAX_FALL_SPEED);
     }
 
-    transform.y += y_speed;
+    transform.y += y_speed * delta_time;
 }
 
 void Player::draw(SDL_Renderer *renderer) const {

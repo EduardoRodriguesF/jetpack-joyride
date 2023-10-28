@@ -48,11 +48,20 @@ void Game::run() {
 
 void Game::handle_input() {
     SDL_Event e;
-
     while (SDL_PollEvent(&e)) {
         switch (e.type) {
             case SDL_QUIT:
                 running = false;
+                break;
+            case SDL_KEYDOWN:
+                if (e.key.keysym.sym == SDLK_SPACE) {
+                    player.flying = true;
+                }
+                break;
+            case SDL_KEYUP:
+                if (e.key.keysym.sym == SDLK_SPACE) {
+                    player.flying = false;
+                }
                 break;
         }
     }

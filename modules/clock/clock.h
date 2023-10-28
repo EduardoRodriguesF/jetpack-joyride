@@ -5,9 +5,9 @@
 
 struct Clock {
     Clock(Uint32 fps);
-    Uint32 target_frame_time;
-    Uint32 last_tick_time;
-    Uint32 delta;
+    Uint32 target_frame_time = 0;
+    Uint32 last_tick_time = 0;
+    Uint32 delta = 0;
     void tick();
     void lock_remaining() const;
 };
