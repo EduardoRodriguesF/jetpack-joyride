@@ -71,6 +71,7 @@ void Game::update() {
     float delta_time = clock.delta / 1000.0f;
 
     player.update(delta_time);
+    scenario_manager.update(delta_time);
 }
 
 void Game::draw() {
@@ -79,6 +80,7 @@ void Game::draw() {
 
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 1);
     player.draw(renderer);
+    scenario_manager.draw(renderer);
 
     SDL_RenderPresent(renderer);
 }

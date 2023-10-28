@@ -3,6 +3,7 @@
 #include "SDL2/SDL.h"
 #include "clock/clock.h"
 #include "game_objects/player.h"
+#include "scenario_manager.h"
 
 class Game {
 public:
@@ -18,4 +19,5 @@ private:
     Clock clock;
     bool running = true;
     Player player;
+    ScenarioManager scenario_manager;
 };

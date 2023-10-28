@@ -15,3 +15,5 @@ constexpr float MAX_FALL_SPEED = 10.0f * UNIT;
 constexpr float FLY_ACCELERATION = 7.0f * UNIT;
 
 constexpr int FLOOR_Y = WINDOW_HEIGHT - 48;
+
+#define SCENE_ACCELERATION 0.001f * UNIT;
