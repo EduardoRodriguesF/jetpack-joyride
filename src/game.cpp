@@ -26,6 +26,8 @@ Game::Game() : clock(FPS) {
         SDL_LogError(0, "Failed to create renderer: %s", SDL_GetError());
         exit(3);
     }
+
+    srand(time(NULL));
 }
 
 Game::~Game() {
