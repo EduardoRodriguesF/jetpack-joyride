@@ -1,13 +1,13 @@
-#include "scenario_manager.h"
+#include "scene.h"
 #include "constants.h"
 
-ScenarioManager::ScenarioManager() : scene_speed(UNIT) {}
-
-ScenarioManager::ScenarioManager(Player *player) : player(player), scene_speed(UNIT) {
-    rocket_list.push_back(Rocket(player, 0));
+Scene::Scene() : scene_speed(UNIT) {
+    rocket_list.push_back(Rocket(0));
 }
 
-void ScenarioManager::update(const float delta_time) {
+void Scene::update(const float delta_time) {
+    player.update(delta_time);
+
     for (auto &static_shock : this->static_shock_list) {
         float acc = this->scene_speed * delta_time;
 
@@ -18,6 +18,7 @@ void ScenarioManager::update(const float delta_time) {
     }
 
     for (auto &rocket : this->rocket_list) {
+        rocket.target_y = player.transform.y;
         rocket.update(delta_time);
     }
 
@@ -31,7 +32,7 @@ void ScenarioManager::update(const float delta_time) {
     }
 }
 
-void ScenarioManager::draw(SDL_Renderer *renderer) {
+void Scene::draw(SDL_Renderer *renderer) {
     for (const auto &static_shock : this->static_shock_list) {
         static_shock.draw(renderer);
     }
@@ -39,9 +40,11 @@ void ScenarioManager::draw(SDL_Renderer *renderer) {
     for (const auto &rocket : this->rocket_list) {
         rocket.draw(renderer);
     }
+
+    player.draw(renderer);
 }
 
-void ScenarioManager::spawn_static_shock() {
+void Scene::spawn_static_shock() {
     auto pattern = static_cast<StaticShockPattern>(rand() % 4);
     int y = rand() % WINDOW_HEIGHT;
     size_t length = 64 + (rand() % 64);

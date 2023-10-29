@@ -9,16 +9,16 @@ enum class RocketState {
 };
 
 struct Rocket {
-    Rocket(Player *target, float y);
+    Rocket(float y);
     void update(const float delta_time);
     void draw(SDL_Renderer *renderer) const;
 
-    Player *target;
     SDL_FRect transform;
     RocketState state = RocketState::Aiming;
     int launch_threshold_delay = ROCKET_LAUNCH_TIME;
     int maximum_launch_delay = ROCKET_LAUNCH_TIME * 2;
     int launching_delay = 800;
+    float target_y;
 
 private:
     void update_aiming(const float delta_time);

@@ -38,8 +38,7 @@ Game::~Game() {
 }
 
 void Game::setup() {
-    player = Player();
-    scenario_manager = ScenarioManager(&player);
+    scene = Scene();
 }
 
 void Game::run() {
@@ -64,12 +63,12 @@ void Game::handle_input() {
                 break;
             case SDL_KEYDOWN:
                 if (e.key.keysym.sym == SDLK_SPACE) {
-                    player.flying = true;
+                    scene.player.flying = true;
                 }
                 break;
             case SDL_KEYUP:
                 if (e.key.keysym.sym == SDLK_SPACE) {
-                    player.flying = false;
+                    scene.player.flying = false;
                 }
                 break;
         }
@@ -79,8 +78,7 @@ void Game::handle_input() {
 void Game::update() {
     float delta_time = clock.delta / 1000.0f;
 
-    player.update(delta_time);
-    scenario_manager.update(delta_time);
+    scene.update(delta_time);
 }
 
 void Game::draw() {
@@ -88,8 +86,7 @@ void Game::draw() {
     SDL_RenderClear(renderer);
 
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 1);
-    player.draw(renderer);
-    scenario_manager.draw(renderer);
+    scene.draw(renderer);
 
     SDL_RenderPresent(renderer);
 }

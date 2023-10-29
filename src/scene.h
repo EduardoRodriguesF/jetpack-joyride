@@ -6,15 +6,15 @@
 #include "game_objects/static_shock.h"
 #include "game_objects/rocket.h"
 
-struct ScenarioManager {
-    ScenarioManager();
-    ScenarioManager(Player *player);
+struct Scene {
+    Scene();
+    Scene(Player *player);
     float scene_speed;
     void update(const float delta_time);
     void draw(SDL_Renderer *renderer);
     std::list<StaticShock> static_shock_list;
     std::list<Rocket> rocket_list;
-    Player *player; // TODO: Change strategy
+    Player player;
 
 private:
     void spawn_static_shock();

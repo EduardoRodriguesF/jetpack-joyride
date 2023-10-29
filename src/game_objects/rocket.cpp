@@ -2,7 +2,7 @@
 #include "SDL2/SDL_render.h"
 #include <valarray>
 
-Rocket::Rocket(Player *target, float y) : target(target), transform({WINDOW_WIDTH - 32.0f, y, 32.0f, 32.0f}) {}
+Rocket::Rocket(float y) : target_y(y), transform({WINDOW_WIDTH - 32.0f, y, 32.0f, 32.0f}) {}
 
 void Rocket::update(const float delta_time) {
     switch (state) {
@@ -22,7 +22,7 @@ void Rocket::update_aiming(const float delta_time) {
     this->maximum_launch_delay -= delta_time * 1000;
     this->launch_threshold_delay -= delta_time * 1000;
 
-    if (!target) {
+    if (!target_y) {
         if (launch_threshold_delay <= 0) {
             state = RocketState::Launching;
         }
@@ -30,7 +30,7 @@ void Rocket::update_aiming(const float delta_time) {
         return;
     };
 
-    float diff = target->transform.y - this->transform.y;
+    float diff = target_y - this->transform.y;
 
     if (std::abs(diff) <= 16) {
         // Close enough, do not move
