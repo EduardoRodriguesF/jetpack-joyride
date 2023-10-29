@@ -3,6 +3,10 @@
 
 ScenarioManager::ScenarioManager() : scene_speed(UNIT) {}
 
+ScenarioManager::ScenarioManager(Player *player) : player(player), scene_speed(UNIT) {
+    rocket_list.push_back(Rocket(player, 0));
+}
+
 void ScenarioManager::update(const float delta_time) {
     for (auto &static_shock : this->static_shock_list) {
         float acc = this->scene_speed * delta_time;
@@ -11,6 +15,10 @@ void ScenarioManager::update(const float delta_time) {
         static_shock.b_edge.x -= acc;
 
         static_shock.update(delta_time);
+    }
+
+    for (auto &rocket : this->rocket_list) {
+        rocket.update(delta_time);
     }
 
     this->scene_speed += SCENE_ACCELERATION;
@@ -26,6 +34,10 @@ void ScenarioManager::update(const float delta_time) {
 void ScenarioManager::draw(SDL_Renderer *renderer) {
     for (const auto &static_shock : this->static_shock_list) {
         static_shock.draw(renderer);
+    }
+
+    for (const auto &rocket : this->rocket_list) {
+        rocket.draw(renderer);
     }
 }
 

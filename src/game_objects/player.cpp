@@ -2,7 +2,7 @@
 #include "SDL2/SDL_render.h"
 #include <algorithm>
 
-Player::Player() : transform({0.0f, 0.0f, 32.0f, 32.0f}) {};
+Player::Player() : transform({0.0f, FLOOR_Y - 32.0f, 32.0f, 32.0f}) {};
 
 void Player::update(const float delta_time) {
     if (flying) {

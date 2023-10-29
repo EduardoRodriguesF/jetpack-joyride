@@ -37,7 +37,14 @@ Game::~Game() {
     SDL_Quit();
 }
 
+void Game::setup() {
+    player = Player();
+    scenario_manager = ScenarioManager(&player);
+}
+
 void Game::run() {
+    this->setup();
+
     while (running) {
         this->handle_input();
         this->update();

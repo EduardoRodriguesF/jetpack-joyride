@@ -9,6 +9,7 @@ class Game {
 public:
     Game();
     ~Game();
+    void setup();
     void run();
     void handle_input();
     void update();
