@@ -18,5 +18,6 @@ struct Scene {
 
 private:
     void spawn_static_shock();
+    void spawn_rocket();
     float obstacle_timer = 1.5f;
 };

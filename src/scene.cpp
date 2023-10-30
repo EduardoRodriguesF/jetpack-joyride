@@ -1,9 +1,7 @@
 #include "scene.h"
 #include "constants.h"
 
-Scene::Scene() : scene_speed(UNIT) {
-    rocket_list.push_back(Rocket(0));
-}
+Scene::Scene() : scene_speed(UNIT) {}
 
 void Scene::update(const float delta_time) {
     player.update(delta_time);
@@ -27,8 +25,17 @@ void Scene::update(const float delta_time) {
     this->obstacle_timer -= delta_time;
     if (this->obstacle_timer <= 0) {
         this->obstacle_timer = 1.5f;
+        
+        int obstacle = rand() % 2;
 
-        spawn_static_shock();
+        switch (obstacle) {
+            case 0:
+                spawn_static_shock();
+                break;
+            case 1:
+                spawn_rocket();
+                break;
+        }
     }
 }
 
@@ -54,4 +61,10 @@ void Scene::spawn_static_shock() {
     }
 
     static_shock_list.push_back(StaticShock(pattern, y, length));
+}
+
+void Scene::spawn_rocket() {
+    float y = rand() % WINDOW_HEIGHT;
+
+    rocket_list.push_back(Rocket(y));
 }
