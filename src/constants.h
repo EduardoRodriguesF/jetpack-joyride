@@ -20,4 +20,4 @@ constexpr int FLOOR_Y = WINDOW_HEIGHT - 48;
 
 #define ROCKET_LAUNCH_TIME 1000
 constexpr float ROCKET_SPEED = 7.0f * UNIT;
-constexpr float ROCKET_AIM_SPEED = 1.3f * UNIT;
+constexpr float ROCKET_AIM_SPEED = 0.9f * UNIT;
