@@ -64,7 +64,5 @@ void Scene::spawn_static_shock() {
 }
 
 void Scene::spawn_rocket() {
-    float y = rand() % WINDOW_HEIGHT;
-
-    rocket_list.push_back(Rocket(y));
+    rocket_list.push_back(Rocket(player.transform.y));
 }
