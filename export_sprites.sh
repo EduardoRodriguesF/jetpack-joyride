@@ -5,10 +5,15 @@
 aseprite="/Applications/Aseprite.app/Contents/MacOS/aseprite -b"
 
 for sprite in assets/aseprite/*; do
-    name=$(basename sprite)
+    name=$(basename $sprite)
+    name="${name%.*}"
 
-    echo "Exporting $sprite"
+    echo ""
+    echo "$sprite:"
     for tag in $($aseprite --list-tags $sprite); do
-        $aseprite --tag $tag $sprite --sheet "assets/sprites/$name-$tag.png" > /dev/null
+        dest="$name-$tag.png" 
+        echo $dest
+
+        $aseprite --tag $tag $sprite --sheet "assets/sprites/$dest" > /dev/null
     done
 done
